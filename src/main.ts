@@ -1,22 +1,29 @@
-import { invoke } from "@tauri-apps/api/core";
 
-let greetInputEl: HTMLInputElement | null;
-let greetMsgEl: HTMLElement | null;
+// Tab Switching Logic
+function initTabs() {
+  const tabs = document.querySelectorAll('.tab-btn');
+  const contents = document.querySelectorAll('.tab-content');
 
-async function greet() {
-  if (greetMsgEl && greetInputEl) {
-    // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-    greetMsgEl.textContent = await invoke("greet", {
-      name: greetInputEl.value,
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const target = (tab as HTMLElement).dataset.tab;
+
+      // Toggle Tabs
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      // Toggle Content
+      contents.forEach(c => {
+        c.classList.remove('active');
+        if (c.id === `${target}-view`) {
+          c.classList.add('active');
+        }
+      });
     });
-  }
+  });
 }
 
+// Global Shortcuts or app-wide init could go here
 window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form")?.addEventListener("submit", (e) => {
-    e.preventDefault();
-    greet();
-  });
+  initTabs();
 });

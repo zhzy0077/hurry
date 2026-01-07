@@ -1,0 +1,21 @@
+# Tasks: Add LLM Chat
+
+- [x] **Backend: Configuration**
+    - [x] Create Rust struct for `LlmConfig` (endpoint, apikey, model).
+    - [x] Implement `save_llm_config` command to write to disk.
+    - [x] Implement `get_llm_config` command to read from disk.
+- [x] **Backend: API Client**
+    - [x] Add `reqwest` dependency if missing.
+    - [x] Implement `chat_completion` command:
+        - [x] Construct HTTP request with headers (Authorization: Bearer KEY).
+        - [x] JSON body with `model`, `messages`.
+        - [x] Handle response and return text.
+- [x] **Frontend: State**
+    - [x] Create simple state for current input and current response.
+- [x] **Frontend: Settings UI**
+    - [x] Create a form to input Endpoint, API Key, Model.
+    - [x] Wire up to `save_llm_config`.
+- [x] **Frontend: Chat UI**
+    - [x] Create a unified view with Input and Result areas.
+    - [x] Implement "Send" action calling `chat_completion`.
+    - [x] Render Markdown in the response area.

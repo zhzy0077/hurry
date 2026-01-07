@@ -98,7 +98,7 @@ pub async fn chat_completion(window: WebviewWindow, prompt: String) -> Result<()
         messages: vec![
             ChatMessage {
                 role: "system".to_string(),
-                content: "Reply with the shortest answer. For shell commands, just the command."
+                content: "Reply with the shortest answer. For shell commands, just the command. NO STYLE."
                     .to_string(),
             },
             ChatMessage {

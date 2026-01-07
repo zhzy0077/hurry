@@ -124,15 +124,17 @@ fn position_window_bottom_right(window: &tauri::WebviewWindow) {
             && cursor_position.y < (pos.y + size.height as i32) as f64
     });
 
-    // Get monitor position and size (from active or primary monitor)
+    // Get monitor work area position and size (from active or primary monitor)
     let monitor_info = active_monitor
-        .map(|m| (*m.position(), *m.size()))
+        .map(|m| {
+            let rect = m.work_area();
+            (rect.position, rect.size)
+        })
         .or_else(|| {
-            window
-                .primary_monitor()
-                .ok()
-                .flatten()
-                .map(|m| (*m.position(), *m.size()))
+            window.primary_monitor().ok().flatten().map(|m| {
+                let rect = m.work_area();
+                (rect.position, rect.size)
+            })
         });
 
     if let Some((monitor_pos, monitor_size)) = monitor_info {

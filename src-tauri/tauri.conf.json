@@ -15,7 +15,8 @@
       {
         "title": "hurry",
         "width": 400,
-        "height": 600
+        "height": 600,
+        "decorations": false
       }
     ],
     "security": {

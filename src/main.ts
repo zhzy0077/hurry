@@ -35,4 +35,22 @@ function toggleView() {
 
 window.addEventListener("DOMContentLoaded", () => {
   initViewSwitcher();
+  initWindowEvents();
 });
+
+function initWindowEvents() {
+  window.addEventListener("focus", () => {
+    focusCurrentInput();
+  });
+}
+
+function focusCurrentInput() {
+  const chatView = document.getElementById("chat-view");
+  const memosView = document.getElementById("memos-view");
+
+  if (chatView?.classList.contains("active")) {
+    document.getElementById("prompt-input")?.focus();
+  } else if (memosView?.classList.contains("active")) {
+    document.getElementById("memo-input")?.focus();
+  }
+}

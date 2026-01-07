@@ -74,6 +74,11 @@ function endStreaming() {
     sendBtn.textContent = "Send";
     if (unlistenToken) { unlistenToken(); unlistenToken = null; }
     if (unlistenFinished) { unlistenFinished(); unlistenFinished = null; }
+
+    if (currentResponseText) {
+        navigator.clipboard.writeText(currentResponseText).catch(err => console.error("Auto-copy failed:", err));
+    }
+
     promptInput.focus();
 }
 

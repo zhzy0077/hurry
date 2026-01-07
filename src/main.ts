@@ -1,29 +1,38 @@
 
-// Tab Switching Logic
-function initTabs() {
-  const tabs = document.querySelectorAll('.tab-btn');
-  const contents = document.querySelectorAll('.tab-content');
+// View Switching Logic
+function initViewSwitcher() {
+  window.addEventListener("keydown", (e) => {
+    // Prevent switching if Settings modal is open
+    if (document.getElementById("settings-modal")?.classList.contains("visible")) {
+      return;
+    }
 
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      const target = (tab as HTMLElement).dataset.tab;
-
-      // Toggle Tabs
-      tabs.forEach(t => t.classList.remove('active'));
-      tab.classList.add('active');
-
-      // Toggle Content
-      contents.forEach(c => {
-        c.classList.remove('active');
-        if (c.id === `${target}-view`) {
-          c.classList.add('active');
-        }
-      });
-    });
+    if (e.key === "Tab") {
+      e.preventDefault();
+      toggleView();
+    }
   });
 }
 
-// Global Shortcuts or app-wide init could go here
+function toggleView() {
+  const chatView = document.getElementById("chat-view");
+  const memosView = document.getElementById("memos-view");
+
+  if (chatView && memosView) {
+    const isChatActive = chatView.classList.contains("active");
+
+    if (isChatActive) {
+      chatView.classList.remove("active");
+      memosView.classList.add("active");
+      document.getElementById("memo-input")?.focus();
+    } else {
+      memosView.classList.remove("active");
+      chatView.classList.add("active");
+      document.getElementById("prompt-input")?.focus();
+    }
+  }
+}
+
 window.addEventListener("DOMContentLoaded", () => {
-  initTabs();
+  initViewSwitcher();
 });

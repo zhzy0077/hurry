@@ -57,18 +57,6 @@ impl LlmConfig {
                 .to_string(),
         )
     }
-
-    pub fn save(&self) -> Result<(), String> {
-        if let Some(path) = Self::get_config_path() {
-            if let Some(parent) = path.parent() {
-                let _ = fs::create_dir_all(parent);
-            }
-            let content = serde_json::to_string_pretty(self).map_err(|e| e.to_string())?;
-            fs::write(path, content).map_err(|e| e.to_string())?;
-            return Ok(());
-        }
-        Err("Could not determine config path".to_string())
-    }
 }
 
 #[derive(Serialize)]
@@ -98,21 +86,6 @@ struct StreamChoice {
 #[derive(Deserialize, Debug)]
 struct StreamDelta {
     content: Option<String>,
-}
-
-#[tauri::command]
-pub fn save_llm_config(endpoint: String, apikey: String, model: String) -> Result<(), String> {
-    let config = LlmConfig {
-        endpoint,
-        apikey,
-        model,
-    };
-    config.save()
-}
-
-#[tauri::command]
-pub fn get_llm_config() -> Result<LlmConfig, String> {
-    LlmConfig::load()
 }
 
 #[tauri::command]

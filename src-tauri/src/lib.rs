@@ -27,8 +27,6 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             greet,
             post_memo,
-            llm::save_llm_config,
-            llm::get_llm_config,
             llm::chat_completion
         ])
         .setup(|app| {

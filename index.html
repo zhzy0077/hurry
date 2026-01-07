@@ -92,21 +92,7 @@
       color: #111827;
     }
 
-    .settings-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: #6b7280;
-      font-size: 1.5rem;
-      padding: 0.25rem;
-      border-radius: 6px;
-      transition: background 0.2s;
-    }
 
-    .settings-btn:hover {
-      background: #e5e7eb;
-      color: #374151;
-    }
 
     .output-area {
       flex: 1;
@@ -225,89 +211,7 @@
       color: #ef4444;
     }
 
-    /* Modal Styles */
-    .settings-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 10;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s;
-    }
 
-    .settings-overlay.visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .settings-card {
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      width: 90%;
-      max-width: 400px;
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    }
-
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    label {
-      font-size: 0.875rem;
-      font-weight: 500;
-      color: #374151;
-    }
-
-    input {
-      padding: 0.75rem;
-      border: 1px solid #d1d5db;
-      border-radius: 6px;
-      font-size: 0.875rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    input:focus {
-      border-color: #3b82f6;
-      box-shadow: 0 0 0 1px #3b82f6;
-    }
-
-    .actions {
-      display: flex;
-      gap: 0.75rem;
-      justify-content: flex-end;
-      margin-top: 0.5rem;
-    }
-
-    .cancel-btn {
-      background: white;
-      border: 1px solid #d1d5db;
-      color: #374151;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 500;
-    }
-
-    .save-btn {
-      background: #3b82f6;
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: 500;
-    }
 
     /* Markdown enhancements */
     .markdown-body pre {
@@ -351,17 +255,13 @@
 </head>
 
 <body>
-  <div class="tabs">
-    <button class="tab-btn active" data-tab="chat">Quick Chat</button>
-    <button class="tab-btn" data-tab="memos">Memos</button>
-  </div>
+
 
   <!-- Chat View -->
   <div id="chat-view" class="tab-content active">
     <div class="chat-container">
       <div class="header">
         <h1>Quick Chat</h1>
-        <button id="settings-btn" class="settings-btn" title="Config">⚙️</button>
       </div>
 
       <div id="output" class="output-area markdown-body">
@@ -388,33 +288,7 @@
     </div>
   </div>
 
-  <!-- Settings Modal (Shared/Global) -->
-  <div id="settings-modal" class="settings-overlay">
-    <form id="settings-form" class="settings-card">
-      <h2 style="margin:0; font-size: 1.25rem;">Settings</h2>
-
-      <div class="field">
-        <label for="cfg-endpoint">Endpoint URL</label>
-        <input id="cfg-endpoint" placeholder="https://api.openai.com/v1/chat/completions" required />
-        <span style="font-size: 0.75rem; color: #6b7280;">Full URL to the chat completion endpoint</span>
-      </div>
-
-      <div class="field">
-        <label for="cfg-apikey">API Key</label>
-        <input id="cfg-apikey" type="password" placeholder="sk-..." required />
-      </div>
-
-      <div class="field">
-        <label for="cfg-model">Model Name</label>
-        <input id="cfg-model" placeholder="gpt-4o" required />
-      </div>
-
-      <div class="actions">
-        <button type="button" id="cancel-settings" class="cancel-btn">Cancel</button>
-        <button type="submit" class="save-btn">Save</button>
-      </div>
-    </form>
-  </div>
+  <!-- Settings Modal Removed -->
 </body>
 
 </html>

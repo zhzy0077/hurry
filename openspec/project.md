@@ -1,31 +1,37 @@
 # Project Context
 
 ## Purpose
-[Describe your project's purpose and goals]
+"hurry" is a desktop application built with Tauri, designed to be a lightweight and fast native application using web technologies for the frontend.
 
 ## Tech Stack
-- [List your primary technologies]
-- [e.g., TypeScript, React, Node.js]
+- **Frontend**: Vanilla TypeScript, Vite, HTML/CSS
+- **Backend**: Rust, Tauri v2
+- **Build Tool**: Vite, Cargo (via Tauri CLI)
 
 ## Project Conventions
 
 ### Code Style
-[Describe your code style preferences, formatting rules, and naming conventions]
+- **TypeScript**: Standard TypeScript with ES modules.
+- **Rust**: idiomatic Rust using Tauri commands for logic.
+- **Styling**: Vanilla CSS in `src/styles.css`.
 
 ### Architecture Patterns
-[Document your architectural decisions and patterns]
+- **Frontend/Backend Separation**: UI logic is in `src/`, system-level logic and commands are in `src-tauri/`.
+- **Command Pattern**: Frontend communicates with Rust via Tauri's `invoke` handler.
 
 ### Testing Strategy
-[Explain your testing approach and requirements]
+- Currently using standard Tauri template structure without extensive specific testing frameworks configured yet.
 
 ### Git Workflow
-[Describe your branching strategy and commit conventions]
+- Standard branch/merge workflow.
 
 ## Domain Context
-[Add domain-specific knowledge that AI assistants need to understand]
+- Cross-platform native application development using the Tauri framework.
 
 ## Important Constraints
-[List any technical, business, or regulatory constraints]
+- Requires Tauri v2 dependencies (Rust, system libraries).
+- Optimized for performance and small binary size.
 
 ## External Dependencies
-[Document key external services, APIs, or systems]
+- `@tauri-apps/api`: Core API for frontend-backend communication.
+- `@tauri-apps/plugin-opener`: Utility for opening shell commands/links.
